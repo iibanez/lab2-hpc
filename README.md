@@ -15,13 +15,13 @@ $ ./mandelbrot -i 500 -a -1 -b -1 -c 1 -d 1 -s 0.001 -f salida.raw
 ```
 
 En donde cada punto es lo siguiente:
-  -i: depth, o número máximo de iteraciones
-  -a: límite inferior del componente real del plano complejo 
-  -b: límite inferior componente imaginario
-  -c: límite superior componente real
-  -d: límitee superior componente imaginario
-  -s: muestreo
-  -f: archivo de salida
+- i: depth, o número máximo de iteraciones
+- a: límite inferior del componente real del plano complejo 
+- b: límite inferior componente imaginario
+- c: límite superior componente real
+- d: límitee superior componente imaginario
+- s: muestreo
+- f: archivo de salida
 
 Paralela:
 
@@ -30,14 +30,14 @@ $ ./mandelbrotp -i 500 -a -1 -b -1 -c 1 -d 1 -s 0.001 -f salida.raw -t 12
 ```
 
 En donde cada punto es lo siguiente:
-  -i: depth, o número máximo de iteraciones
-  -a: límite inferior del componente real del plano complejo 
-  -b: límite inferior componente imaginario
-  -c: límite superior componente real
-  -d: límitee superior componente imaginario
-  -s: muestreo
-  -f: archivo de salida
-  -t: cantidad de hebras
+- i: depth, o número máximo de iteraciones
+- a: límite inferior del componente real del plano complejo 
+- b: límite inferior componente imaginario
+- c: límite superior componente real
+- d: límitee superior componente imaginario
+- s: muestreo
+- f: archivo de salida
+- t: cantidad de hebras
   
 Obteniendo para estos párametros, tanto en el caso secuencial como paralelo el siguiente resultado:
 
