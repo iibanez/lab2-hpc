@@ -87,11 +87,11 @@ void paralelo(double **matriz_imagen, int size_imaginario, int size_real, double
     omp_set_num_threads(hebras);
 
     //se inicializan las variables asociadas al proceso mandelbrot
-	double x, y, z0_r, z0_i, zn_r, zn_i, zn_1r, zn_1i;
+	double x, y, zn_r, zn_i, aux;
     int n, i, r;
 
     //se inicia el proceso paralelo y se indica las variables compartidas y lñas privadas para cada una de las hebras
-	#pragma omp parallel shared(matriz_imagen, size_imaginario, size_real, lim_sup_i, lim_inf_r, muestreo, depth) private(x, y, z0_r, z0_i, zn_r, zn_i, zn_1r, zn_1i, n, i, r)
+	#pragma omp parallel shared(matriz_imagen, size_imaginario, size_real, lim_sup_i, lim_inf_r, muestreo, depth) private(x, y, zn_r, zn_i, aux, n, i, r)
     {
     	//Se indica que el for que recorre la parte imaginaria, es decir, las filas es de manera paralela
     	#pragma omp for
@@ -100,16 +100,13 @@ void paralelo(double **matriz_imagen, int size_imaginario, int size_real, double
 	    	x = lim_inf_r;
 	    	y = lim_sup_i - muestreo*i;
 	    	for(r=0;r<size_real;r++){
-	    		z0_r = 0;
-	    		z0_i = 0;
 	    		n = 1;
-	    		zn_r = z0_r + x;
-	    		zn_i = z0_i + y;
+	    		zn_r = x;
+	    		zn_i = y;
 	    		while(sqrt(zn_r*zn_r +  zn_i*zn_i) < 2 && n < depth){
-	    			zn_1r = zn_r*zn_r - zn_i*zn_i + x;
-	    			zn_1i = 2*zn_r*zn_i + y;
-	    			zn_r = zn_1r;
-	    			zn_i = zn_1i;
+	    			aux = zn_r*zn_r - zn_i*zn_i + x;
+	    			zn_i = 2*zn_r*zn_i + y;
+	    			zn_r = aux;
 	    			n = n + 1;
 	     		}
 
