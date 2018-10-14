@@ -12,8 +12,8 @@ all: release
 
 release:
 	mkdir -p $(DIRO)
-	gcc -o $(DIRO)/mandelbrot $(DIRI)/mandelbrot.c
-	$(COMPILADOR) -o $(DIRO)/mandelbrotp $(DIRI)/mandelbrotp.c -fopenmp
+	gcc -o $(DIRO)/mandelbrot $(DIRI)/mandelbrot.c -lm
+	$(COMPILADOR) -o $(DIRO)/mandelbrotp $(DIRI)/mandelbrotp.c -fopenmp -lm
 
 clean:
 	rm -rf $(DIRO)
