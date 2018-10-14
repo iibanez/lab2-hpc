@@ -52,8 +52,8 @@ int main(int argc, char *argv[]){
 	}
 
 	//Se detecta el tamano de la matriz que sera creada
-	int size_imaginario = rint(fabs(lim_inf_i-lim_sup_i)/muestreo);
-	int size_real = rint(fabs(lim_inf_r-lim_sup_r)/muestreo);
+	int size_imaginario = rint(fabs(lim_inf_i-lim_sup_i)/muestreo)+1;
+	int size_real = rint(fabs(lim_inf_r-lim_sup_r)/muestreo)+1;
 
 	//Se inicializa la cantidad de filas
 	double** matriz_imagen = (double **) malloc (size_imaginario*sizeof(double*));
@@ -114,8 +114,6 @@ void paralelo(double **matriz_imagen, int size_imaginario, int size_real, double
 	     		x = x + muestreo;
 	    	}
 	    }
-	    //Se espera a que todas las hebras terminen
-	    #pragma omp barrier
 	}
 }
 
