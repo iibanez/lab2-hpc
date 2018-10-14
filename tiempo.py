@@ -12,6 +12,6 @@ for i in range(1,25):
 		suma += float(separado[1][2:7])
 	
 	suma = suma/3
-	archivo.write(str(suma)+"\n")
+	archivo.write(str(suma).replace(".",",")+"\n")
 
 archivo.close()
