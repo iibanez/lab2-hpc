@@ -7,7 +7,7 @@
 Explicacion detallado de las funciones mas adelante
 */
 int escribir_imagen(double **matriz_imagen, char* nombre_salida, int size_imaginario, int size_real);
-void secuencial(double **matriz_imagen, int size_imaginario, int size_real, double lim_sup_i, double lim_inf_r, double muestreo, int depth);
+void secuencial(double **matriz_imagen, int size_imaginario, int size_real, double lim_inf_i, double lim_inf_r, double muestreo, int depth);
 
 int main(int argc, char *argv[]){
 
@@ -55,12 +55,12 @@ int main(int argc, char *argv[]){
 	double** matriz_imagen = (double **) malloc (size_imaginario*sizeof(double*));
 
     //Crear las columnas en cada una de las filas
-    for(int i=0;i<size_real;i++){
+    for(int i=0;i<size_imaginario;i++){
 		matriz_imagen[i] = (double*) malloc (size_real*sizeof(double)); 
     }
 
     //se realiza el calculo secuencial del proceso mandelbrot
-    secuencial(matriz_imagen, size_imaginario, size_real, lim_sup_i, lim_inf_r, muestreo, depth);
+    secuencial(matriz_imagen, size_imaginario, size_real, lim_inf_i, lim_inf_r, muestreo, depth);
     //Es ecrito el archivo de salida
     escribir_imagen(matriz_imagen, nombre_salida, size_imaginario, size_real);
 }
@@ -71,12 +71,12 @@ Entrada:
 	-matriz_imagen: matriz que contendra la imagen creada
 	-size_imaginario: cantidad de filas en la matriz
 	-size_real: cantidad de columnas en la matriz 
-	-lim_sup_i: limite superior de parte imaginaria
+	-lim_inf_i: limite inferior de parte imaginaria
 	-lim_inf_r: limite inferior de parte real
 	-muestreo: muestreo utilizado para generar la matriz
 	-depth: limite del valor de n
 */
-void secuencial(double **matriz_imagen, int size_imaginario, int size_real, double lim_sup_i, double lim_inf_r, double muestreo, int depth){
+void secuencial(double **matriz_imagen, int size_imaginario, int size_real, double lim_inf_i, double lim_inf_r, double muestreo, int depth){
 	
 	//se inicializan las variables asociadas al proceso mandelbrot
 	double x, y, zn_r, zn_i, aux;
@@ -85,7 +85,7 @@ void secuencial(double **matriz_imagen, int size_imaginario, int size_real, doub
     //se comienza el proceso para cada uno de los pixeles de la imagen
     for(i=0;i<size_imaginario;i++){
     	x = lim_inf_r;
-    	y = lim_sup_i - muestreo*i;
+    	y = lim_inf_i + muestreo*i;
     	for(r=0;r<size_real;r++){
     		n = 1;
     		zn_r = x;
